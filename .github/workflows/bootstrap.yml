@@ -3,17 +3,23 @@ name: Bootstrap source
 on:
   push:
     branches: [main]
+  pull_request:
+  issues:
+    types: [opened]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   unpack:
+    if: ${{ github.event_name != 'issues' || github.event.issue.title == '[bootstrap] restore verified source' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Restore verified source tree
@@ -29,6 +35,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git status --short
+          if git diff --cached --quiet; then
+            echo "Verified source is already restored."
+            exit 0
+          fi
           git commit -m "feat: launch consent-based event selfie search MVP"
           git push origin HEAD:main
