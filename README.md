@@ -53,3 +53,7 @@ docker run --rm -p 7860:7860 event-face-finder
 ## 범위
 
 이 앱은 사용자가 이번 요청에서 올린 후보 사진 묶음 안에서만 유사 얼굴을 찾습니다. 공개 웹·SNS 크롤링, 이름 검색, 감시용 인물 목록, 신원 확정은 지원하지 않습니다. 검색 결과는 동일인 확정이 아닌 유사 후보입니다.
+
+## 라이선스 고지
+
+애플리케이션은 MIT, YuNet은 MIT, SFace는 Apache-2.0입니다. 자세한 모델 파일과 체크섬은 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)에 기록했습니다.
