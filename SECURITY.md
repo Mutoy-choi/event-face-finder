@@ -1,32 +1,5 @@
-# Security Policy
+# Security policy
 
-## Supported version
+실제 얼굴 사진이나 생체정보를 공개 GitHub Issue에 올리지 마세요. 이 프로젝트는 요청 시 업로드한 갤러리 내부 검색만 지원합니다. 공개 웹 크롤링, SNS 계정 식별, 감시 목록, 중요한 의사결정용 신원 확인은 지원 범위가 아닙니다.
 
-Security fixes are applied to the latest commit on `main` while the project is in MVP development.
-
-## Reporting a vulnerability
-
-Do not disclose vulnerabilities, exposed credentials, private event links, participant images, or biometric templates in a public issue.
-
-Report privately to the repository owner with:
-
-- affected commit and deployment,
-- reproduction steps,
-- expected and actual behavior,
-- impact and any known data exposure,
-- suggested mitigation when available.
-
-Please remove real participant photographs, access codes, session cookies, API keys, Stripe secrets, encryption keys, and signed media URLs from reports.
-
-## Privacy and product boundary
-
-PhotoMatch Studio is designed only for consent-based matching inside an organizer-controlled event gallery. Reports are especially welcome for failures involving:
-
-- cross-event or cross-tenant result leakage,
-- selfie or embedding persistence beyond the documented lifecycle,
-- unauthorized media access,
-- weak deletion or retention enforcement,
-- bypasses of event access codes, rate limits, or CSRF protection,
-- webhook signature or credit-accounting errors.
-
-Public-web crawling, social-profile identification, and unrestricted person tracking are outside the supported product scope.
+취약점 신고 대상에는 사용자 간 파일 노출, 임시 파일의 과도한 보관, 임의 파일 업로드, 경로 조작, 이미지 파서 원격 코드 실행, 파일 크기 제한 우회가 포함됩니다.

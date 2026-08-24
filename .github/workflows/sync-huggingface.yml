@@ -1,0 +1,34 @@
+name: Sync Hugging Face Space
+
+on:
+  push:
+    branches: [main]
+    paths: ["space/**", ".github/workflows/sync-huggingface.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: huggingface-space
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Require HF token
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: test -n "$HF_TOKEN" || (echo "::error::Add repository secret HF_TOKEN with Hugging Face write access" && exit 1)
+      - name: Mirror space directory
+        uses: huggingface/hub-sync@v0.1.0
+        with:
+          github_repo_id: ${{ github.repository }}
+          huggingface_repo_id: ${{ vars.HF_SPACE_REPO || 'mutoy/event-face-finder' }}
+          hf_token: ${{ secrets.HF_TOKEN }}
+          repo_type: space
+          space_sdk: docker
+          subdirectory: space
+          private: false
